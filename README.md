@@ -8,3 +8,5 @@ MaRGE: Maxey-Riley-Gatignol equation
 - "Dtche_obj_3D.py" and "Analy_obj_3D.py" are the obejcts to show how to use the classes.
 - "Dtche_J_parameters_3D.py" has all the parameters used in MaRGE.
 - "Vortex_Fld_3D.py" is the vortex field.
+
+Note: To compare the numerical solver with analytical solution, the values of parameters should be fixed.
