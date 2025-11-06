@@ -66,7 +66,7 @@ def Err_n(t, N, order):
 
 
 # -----------------------------------------------------------------------------
-# Compute errors (parallelized)
+# Compute errors
 # -----------------------------------------------------------------------------
 def _err_worker(args):
     """Worker function for parallel error computation."""
