@@ -10,8 +10,8 @@ import matplotlib.pyplot as plt
 from concurrent.futures import ProcessPoolExecutor
 
 from marge3d.fields import VelocityField3D
-from marge3d.numeric import NumericalSolution
-from marge3d.analytic import AnalyticalSolution
+from marge3d.numeric import NumericalSolver
+from marge3d.analytic import AnalyticalSolver
 
 # -----------------------------------------------------------------------------
 # Parameters
@@ -35,7 +35,7 @@ U0     = Vortex.get_velocity(R0[0], R0[1], R0[2], 0) # Initial fluid velocity
 V0     = np.array(Vortex.get_velocity(R0[0], R0[1], R0[2], 0)) # Same as initial fluid velocity
 W0     = V0 - U0 # Relative velocity
 
-MRE_analytic = AnalyticalSolution(R0, U0, particle_density, fluid_density,
+MRE_analytic = AnalyticalSolver(R0, U0, particle_density, fluid_density,
                                        particle_radius, kinematic_viscosity, time_scale, char_vel)
 
 # -----------------------------------------------------------------------------
@@ -49,7 +49,7 @@ def analytic_traj(t):
 def Err_n(t, N, order):
     """Compute L_inf error for given N and order."""
     t_v = np.linspace(0, t, N)
-    mre = NumericalSolution(R0, W0, Vortex, N+1, order, particle_density, fluid_density, particle_radius,
+    mre = NumericalSolver(R0, W0, Vortex, N+1, order, particle_density, fluid_density, particle_radius,
                        kinematic_viscosity, time_scale, char_vel)
     if order == 1:
         R_x, R_y, R_z, W = mre.Euler(t_v, flag=True)
@@ -79,7 +79,7 @@ def compute_all_errors(N_v, t_end=1.0):
             [(t_end, N, order) for N in N_v for order in [1, 2, 3]]
         ))
     results = np.array(results).reshape(len(N_v), 3)
-    return results[:, 0], results[:, 1], results[:, 2]
+    return (*results.T,)
 
 
 # -----------------------------------------------------------------------------

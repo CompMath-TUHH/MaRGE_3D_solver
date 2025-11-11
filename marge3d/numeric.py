@@ -6,7 +6,7 @@ import scipy.sparse as sp
 
 from marge3d.params import DaitcheParameters
 
-class NumericalSolution:
+class NumericalSolver:
 
     def __init__(self, x, w, velocity_field, Nt, order, particle_density, fluid_density, particle_radius,
                        kinematic_viscosity, time_scale, char_vel):

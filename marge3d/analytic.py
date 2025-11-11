@@ -6,7 +6,7 @@ from scipy.special import erfc, erfcx
 
 from marge3d.params import DaitcheParameters
 
-class AnalyticalSolution:
+class AnalyticalSolver:
 
   def __init__(self, x, v, particle_density, fluid_density, particle_radius,
                kinematic_viscosity, time_scale, char_vel):

@@ -12,6 +12,5 @@ pip install .
 
 ## Documentation
 
-... incoming ...
-
-Note: To compare the numerical solver with analytical solution, the values of parameters should be fixed.
+The code is currently transformed into a proper Python package that can be referred in a publication.
+Details on the full transformation are given [here ...](./docs/changelog.md)

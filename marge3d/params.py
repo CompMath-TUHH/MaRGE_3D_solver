@@ -2,6 +2,17 @@
 List of parameters required for 3D MRE as solved according to Daitche's paper
 """
 
+
+TEST_PARAMETERS = dict(
+    particle_density    = 500,
+    fluid_density       = 972,
+    particle_radius     = 0.00018**0.5,
+    kinematic_viscosity = 2e-4,
+    time_scale          = 0.1,
+    char_vel            = 0.4,
+)
+
+
 class DaitcheParameters:
 
   def set_beta(self):

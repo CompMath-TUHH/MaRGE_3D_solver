@@ -10,8 +10,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 from marge3d.fields import VelocityField3D
-from marge3d.numeric import NumericalSolution
-from marge3d.analytic import AnalyticalSolution
+from marge3d.numeric import NumericalSolver
+from marge3d.analytic import AnalyticalSolver
 
 
 particle_density    = 500
@@ -36,9 +36,9 @@ t_v   = np.linspace(0, T, N)
 
 U0    = Vortex.get_velocity(R0[0], R0[1], R0[2], 0) # Initial fluid velocity
 
-MRE_analytic = AnalyticalSolution(R0, U0, particle_density, fluid_density, particle_radius, kinematic_viscosity, time_scale, char_vel)
+MRE_analytic = AnalyticalSolver(R0, U0, particle_density, fluid_density, particle_radius, kinematic_viscosity, time_scale, char_vel)
 
-Order_n = NumericalSolution(R0, W0, Vortex, len(t_v), order, particle_density, fluid_density, particle_radius,
+Order_n = NumericalSolver(R0, W0, Vortex, len(t_v), order, particle_density, fluid_density, particle_radius,
                    kinematic_viscosity, time_scale, char_vel)
 
 if order == 1:

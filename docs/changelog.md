@@ -21,8 +21,8 @@ Creation of the `marge3D` folder, containing a `__init__.py` file so it can be i
 Most class in `marge3D` have been renamed to follow the [standard Python conventions (PEP8)](https://peps.python.org/pep-0008), that is :
 
 - `mr_parameter` -> `DaitcheParameters`
-- `maxey_riley_analytic_3d` -> `AnalyticalSolution`
-- `maxey_riley_Daitche_3d` -> `NumericalSolution`
+- `maxey_riley_analytic_3d` -> `AnalyticalSolver`
+- `maxey_riley_Daitche_3d` -> `NumericalSolver`
 - `velocity_field_3d` -> `VelocityField3D`
 
 > 💡 All import statements have been updated, and unnecessary inheritances to the base `object` class have been removed
@@ -80,3 +80,62 @@ pip install -e .
 
 > 💡 The `-e` option installs in editable mode, creating link to the `marge3d` package in the Python environment rather than copying the package into it.
 > That way, any local modification on the package is automatically taken into account.
+
+
+### Continuous testing
+
+1. added first tests in the [tests](../tests) folder
+2. added the `tests` optional dependencies in `pyproject.toml`
+```toml
+...
+[project.optional-dependencies]
+tests = [
+    "flake8",
+    "pytest",
+]
+```
+3. added the `ci_pipeline.yml` file in a `.github/workflows` folder, containing :
+```yml
+name: CI pipeline ⚙️
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+
+jobs:
+  test-code:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python: ['3.10', '3.11', '3.12', '3.13', '3.14']
+    defaults:
+      run:
+        shell: bash -l {0}
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Set up Python ${{ matrix.python }}
+      uses: actions/setup-python@v3
+      with:
+        python-version: "${{ matrix.python }}"
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install .[tests]
+    - name: Lint with flake8
+      run: |
+        # stop if there are Python syntax errors or undefined names
+        flake8 ./marge3d ./tests --count --select=E9,F63,F7,F82 --show-source --statistics
+    - name: Run pytest
+      run: |
+        pytest --continue-on-collection-errors -v --durations=0 ./tests
+```
+
+Now, the test are run on every commit done to the `main` branch, but can also be run locally using
+
+```bash
+pip install -e .[tests]
+pytest -v ./tests
+```

@@ -1,7 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-from marge3d.numeric import NumericalSolution
+from marge3d.numeric import NumericalSolver
 from marge3d.fields import VelocityField3D
 
 from marge3d.params import DaitcheParameters
@@ -32,7 +32,7 @@ Vortex = VelocityField3D(1)
 V0    = Vortex.get_velocity(R0[0], R0[1], R0[2], T_ini)
 N     = 100
 
-Order_n = NumericalSolution(R0, W0, Vortex, N, order, particle_density, fluid_density, particle_radius,
+Order_n = NumericalSolver(R0, W0, Vortex, N, order, particle_density, fluid_density, particle_radius,
                    kinematic_viscosity, time_scale, char_vel)
 
 t_v = np.linspace(T_ini, T_fin, N)
