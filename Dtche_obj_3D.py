@@ -1,9 +1,10 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-from Dtche_J_cls_3D import maxey_riley_Daitche_3d
-from Vortex_Fld_3D import velocity_field_3d
-from Dtche_J_parameters_3D import mr_parameter
+from marge3d.numeric import NumericalSolution
+from marge3d.fields import VelocityField3D
+
+from marge3d.params import DaitcheParameters
 
 R0     = np.array([1, 0, 0])
 W0     = np.array([0, 0, 0])
@@ -15,7 +16,7 @@ kinematic_viscosity = 2 * 1e-4
 time_scale          = 0.0125
 char_vel            = 0.4
 
-par = mr_parameter(particle_density, fluid_density, particle_radius,
+par = DaitcheParameters(particle_density, fluid_density, particle_radius,
                     kinematic_viscosity, time_scale, char_vel)
 
 print("G = ", par.g)
@@ -26,19 +27,19 @@ order  = 2
 T_ini  = 0
 T_fin  = 10
 T      = T_fin - T_ini
-Vortex = velocity_field_3d(1)
+Vortex = VelocityField3D(1)
 
 V0    = Vortex.get_velocity(R0[0], R0[1], R0[2], T_ini)
 N     = 100
 
-Order_n = maxey_riley_Daitche_3d(R0, W0, Vortex, N, order, particle_density, fluid_density, particle_radius,
+Order_n = NumericalSolution(R0, W0, Vortex, N, order, particle_density, fluid_density, particle_radius,
                    kinematic_viscosity, time_scale, char_vel)
 
 t_v = np.linspace(T_ini, T_fin, N)
 if order == 1:
     R_x, R_y, R_z, W = Order_n.Euler(t_v, flag=True)
 elif order == 2:
-    R_x, R_y, R_z, W = Order_n.AdamBashf2(t_v, flag=True)   
+    R_x, R_y, R_z, W = Order_n.AdamBashf2(t_v, flag=True)
 elif order == 3:
     R_x, R_y, R_z, W = Order_n.AdamBashf3(t_v, flag=True)
 else:

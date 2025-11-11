@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Analytic solution and numerical solution will agree only when 
+Analytic solution and numerical solution will agree only when
 time_scale is 0.1 and char_vel is 0.4.
 This is because the analytical solution is derived under these conditions.
 Other parameters can be changed.
@@ -9,10 +9,9 @@ Other parameters can be changed.
 import numpy as np
 import matplotlib.pyplot as plt
 
-from Vortex_Fld_3D import velocity_field_3d, velocity_field_3d_nondim
-from Dtche_J_cls_3D import maxey_riley_Daitche_3d
-from Analy_J_cls_3D import maxey_riley_analytic_3d
-from Dtche_J_parameters_3D import mr_parameter
+from marge3d.fields import VelocityField3D
+from marge3d.numeric import NumericalSolution
+from marge3d.analytic import AnalyticalSolution
 
 
 particle_density    = 500
@@ -20,7 +19,7 @@ fluid_density       = 972
 particle_radius     = 0.0015 # S=0.3 for this and the 3rd order method does not perform well. So the solution trajectories are obtained for order 2 method.
 kinematic_viscosity = 2 * 1e-4
 time_scale          = 0.1
-char_vel            = 0.4  
+char_vel            = 0.4
 
 order  = 2
 T      = 10
@@ -31,15 +30,15 @@ N      = 1000
 R0     = np.array([1, 0, 0])
 W0     = np.array([0, 0, 0])
 
-Vortex = velocity_field_3d(10*time_scale)
+Vortex = VelocityField3D(10*time_scale)
 t_v   = np.linspace(0, T, N)
 #t_v    = np.arange(0, T, h)
 
 U0    = Vortex.get_velocity(R0[0], R0[1], R0[2], 0) # Initial fluid velocity
 
-MRE_analytic = maxey_riley_analytic_3d(R0, U0, particle_density, fluid_density, particle_radius, kinematic_viscosity, time_scale, char_vel)
+MRE_analytic = AnalyticalSolution(R0, U0, particle_density, fluid_density, particle_radius, kinematic_viscosity, time_scale, char_vel)
 
-Order_n = maxey_riley_Daitche_3d(R0, W0, Vortex, len(t_v), order, particle_density, fluid_density, particle_radius,
+Order_n = NumericalSolution(R0, W0, Vortex, len(t_v), order, particle_density, fluid_density, particle_radius,
                    kinematic_viscosity, time_scale, char_vel)
 
 if order == 1:
@@ -52,7 +51,7 @@ else:
     raise ValueError("Order must be 1, 2, or 3.")
 
 X      = np.zeros(len(t_v))
-Y      = np.zeros(len(t_v)) 
+Y      = np.zeros(len(t_v))
 Z      = np.zeros(len(t_v))
 
 for i in range(len(t_v)):

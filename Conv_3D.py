@@ -9,9 +9,9 @@ import numpy as np
 import matplotlib.pyplot as plt
 from concurrent.futures import ProcessPoolExecutor
 
-from Vortex_Fld_3D import velocity_field_3d
-from Dtche_J_cls_3D import maxey_riley_Daitche_3d
-from Analy_J_cls_3D import maxey_riley_analytic_3d
+from marge3d.fields import VelocityField3D
+from marge3d.numeric import NumericalSolution
+from marge3d.analytic import AnalyticalSolution
 
 # -----------------------------------------------------------------------------
 # Parameters
@@ -30,12 +30,12 @@ print("Stokes number (S) = ", St)
 # Initial conditions
 # -----------------------------------------------------------------------------
 R0     = np.array([1, 0, 0])
-Vortex = velocity_field_3d(1)
+Vortex = VelocityField3D(1)
 U0     = Vortex.get_velocity(R0[0], R0[1], R0[2], 0) # Initial fluid velocity
 V0     = np.array(Vortex.get_velocity(R0[0], R0[1], R0[2], 0)) # Same as initial fluid velocity
 W0     = V0 - U0 # Relative velocity
 
-MRE_analytic = maxey_riley_analytic_3d(R0, U0, particle_density, fluid_density,
+MRE_analytic = AnalyticalSolution(R0, U0, particle_density, fluid_density,
                                        particle_radius, kinematic_viscosity, time_scale, char_vel)
 
 # -----------------------------------------------------------------------------
@@ -49,7 +49,7 @@ def analytic_traj(t):
 def Err_n(t, N, order):
     """Compute L_inf error for given N and order."""
     t_v = np.linspace(0, t, N)
-    mre = maxey_riley_Daitche_3d(R0, W0, Vortex, N+1, order, particle_density, fluid_density, particle_radius,
+    mre = NumericalSolution(R0, W0, Vortex, N+1, order, particle_density, fluid_density, particle_radius,
                        kinematic_viscosity, time_scale, char_vel)
     if order == 1:
         R_x, R_y, R_z, W = mre.Euler(t_v, flag=True)
@@ -59,7 +59,7 @@ def Err_n(t, N, order):
         R_x, R_y, R_z, W = mre.AdamBashf3(t_v, flag=True)
     else:
         raise ValueError("Order must be 1, 2, or 3")
-    
+
     R_num = np.column_stack((R_x, R_y, R_z))
     R_ana = np.array([analytic_traj(ti) for ti in t_v])
     return np.max(np.linalg.norm(R_ana - R_num, axis=1))

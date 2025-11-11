@@ -1,27 +1,21 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
 """
-Created on Fri Aug  9 12:23:02 2024
-
-@author: cvr6133
-
-This is the list of parameters required for 3D MRE as solved according to Daitche's paper
+List of parameters required for 3D MRE as solved according to Daitche's paper
 """
 
-class mr_parameter(object):
+class DaitcheParameters:
 
   def set_beta(self):
     self.beta = self.rho_p /self.rho_f
-  
+
   def set_S(self):
     self.S = (1.0/3.0)*self.a**2/(self.nu * self.T)
-  
+
   def set_R(self):
     self.R = 3.0/(1.0 + 2.0*self.beta)
-    
+
   def set_gravity(self):
     self.g = (self.T/self.U)*9.8
-  
+
   def __init__(self, particle_density, fluid_density, particle_radius,
                      kinematic_viscosity, time_scale, char_vel):
     self.rho_p = particle_density

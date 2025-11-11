@@ -1,27 +1,21 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
 """
-Created on Mon Jul 15 15:26:25 2024
-
-@author: cvr6133
-
-The 3D velocity field here is (-y, x, 0). This is just the 2D vortex taken along z direction. 
+The 3D velocity field here is (-y, x, 0). This is just the 2D vortex taken along z direction.
 """
 import math
 
-class velocity_field_3d():
+class VelocityField3D:
 
   def __init__(self, omega):
     self.omega    = omega
     self.limits   = False
     self.periodic = False
-    
+
   def get_velocity(self, x, y, z, t):
     u1 =  -y * self.omega
     u2 =  x * self.omega
     u3 =  0.0 * self.omega
     return u1, u2, u3
-  
+
   def get_gradient(self, x, y, z, t):
     u1x =  0.0
     u1y =  -1.0 * self.omega
@@ -50,7 +44,7 @@ class velocity_field_3d_nondim():
     self.omega    = omega*char_time
     self.limits   = False
     self.periodic = False
-    
+
   def get_velocity(self, x, y, z, t):
     u1 =  -y * self.omega*self.char_len
     u2 =  x * self.omega*self.char_len
@@ -78,7 +72,7 @@ class velocity_field_3d_nondim():
 class velocity_field_3d_oscillatory():
 
   def __init__(self):
-    
+
     self.limits   = False
     self.periodic = False
 
@@ -87,7 +81,7 @@ class velocity_field_3d_oscillatory():
     u2 = math.sin(6*t)
     u3 = 0.0
     return u1, u2, u3
-  
+
   def get_gradient(self, x, y, z, t):
     u1x =  0.0
     u1y =  0.0
@@ -105,4 +99,3 @@ class velocity_field_3d_oscillatory():
     u2t = 6*math.cos(6*t)
     u3t = 0.0
     return u1t, u2t, u3t
-
