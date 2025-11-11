@@ -87,7 +87,7 @@ pip install -e .
 1. added first tests in the [tests](../tests) folder
 2. added the `tests` optional dependencies in `pyproject.toml`
 ```toml
-...
+# previous content ...
 [project.optional-dependencies]
 tests = [
     "flake8",
@@ -133,7 +133,7 @@ jobs:
         pytest --continue-on-collection-errors -v --durations=0 ./tests
 ```
 
-Now, the test are run on every commit done to the `main` branch, but can also be run locally using
+Now, all tests are run on every commit done to the `main` branch, but can also be run locally using
 
 ```bash
 pip install -e .[tests]
