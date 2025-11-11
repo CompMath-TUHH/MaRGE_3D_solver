@@ -18,7 +18,7 @@ from marge3d.analytic import AnalyticalSolution
 # -----------------------------------------------------------------------------
 particle_density    = 500
 fluid_density       = 972
-particle_radius     = np.sqrt(0.00018)  # 0.0135
+particle_radius     = 0.00018**0.5  # 0.0135
 kinematic_viscosity = 2 * 1e-4
 time_scale          = 0.1
 char_vel            = 0.4
