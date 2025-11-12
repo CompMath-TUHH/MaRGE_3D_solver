@@ -196,7 +196,7 @@ Finally, modify the last part of the [`ci_pipeline.yml` file](../.github/workflo
 ```yml
 - name: Run pytest
   run: |
-    pytest --cov=marge3d --cov-branch --cov-report=xml -v --durations=0 ./tests
+    pytest --cov --cov-report=xml -v --durations=0 ./tests
 - name: Upload coverage reports to Codecov
   uses: codecov/codecov-action@v5
   if: github.repository_owner == 'CompMath-TUHH' && matrix.python == '3.13'
