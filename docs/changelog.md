@@ -156,12 +156,14 @@ tests = [
     "flake8",
     "pytest",
     "pytest-cov",
+    "pytest-timeout",
+    "coverage[toml]",
 ]
 
 [tool.coverage.run]
 relative_files = true
 concurrency = ['multiprocessing']
-source = ['marge3d']
+include = ['*/marge3d/*']
 
 [tool.coverage.report]
 skip_empty = true
