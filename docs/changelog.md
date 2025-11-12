@@ -84,7 +84,7 @@ pip install -e .
 
 ### Continuous testing
 
-1. added first tests in the [tests](../tests) folder
+1. added first tests in the [tests](../tests) folder (order convergence VS analytical solution)
 2. added the `tests` optional dependencies in `pyproject.toml`
 ```toml
 # previous content ...
@@ -115,9 +115,11 @@ jobs:
         shell: bash -l {0}
 
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
+      with:
+        fetch-depth: 2
     - name: Set up Python ${{ matrix.python }}
-      uses: actions/setup-python@v3
+      uses: actions/setup-python@v4
       with:
         python-version: "${{ matrix.python }}"
     - name: Install dependencies
@@ -139,3 +141,81 @@ Now, all tests are run on every commit done to the `main` branch, but can also b
 pip install -e .[tests]
 pytest -v ./tests
 ```
+
+
+### Test coverage
+
+📜 _It's nice to have test for your package, it's better to have coverage analysis checking how much of your code is tested (and preferably 100%)._
+
+First, complete the `pyproject.toml` file with an additional `tests` dependency (`pytest-cov`),
+and add the following coverage options :
+
+```toml
+[project.optional-dependencies]
+tests = [
+    "flake8",
+    "pytest",
+    "pytest-cov",
+]
+
+[tool.coverage.run]
+relative_files = true
+concurrency = ['multiprocessing']
+source = ['marge3d']
+
+[tool.coverage.report]
+skip_empty = true
+# Regexes for lines to exclude from consideration
+exclude_lines = [
+    # Enable the standard pragma
+    'pragma: no cover',
+
+    # Don't complain if tests don't hit defensive assertion code:
+    'raise',
+    'except',
+
+    # Ignore footer of scripts
+    'if __name__ == "__main__":',
+    ]
+```
+
+Now, test can be run with a coverage report using :
+
+```bash
+pip install -e .[tests]
+pytest --cov --cov-branch --cov-report=html -v ./tests
+```
+
+This will generate an HTML report with file-by-file test coverage in the `htmlcov/index.html` file,
+that can open with you favorite browser.
+
+> 💡 Note that the `htmlcov` folder is added in the [`.gitignore` file](../.gitignore)
+
+Finally, modify the last part of the [`ci_pipeline.yml` file](../.github/workflows/ci_pipeline.yml) :
+
+```yml
+- name: Run pytest
+  run: |
+    pytest --cov --cov-branch --cov-report=xml -v --durations=0 ./tests
+- name: Upload coverage reports to Codecov
+  uses: codecov/codecov-action@v5
+  if: github.repository_owner == 'CompMath-TUHH' && matrix.python == '3.13'
+  with:
+    token: ${{ secrets.CODECOV_TOKEN }}
+    slug: CompMath-TUHH/MaRGE_3D_solver
+```
+
+This will upload a coverage report to [codecov](https://app.codecov.io/github/CompMath-TUHH) each time
+a modification is made on the `main` branch, or when someone do a pull request.
+
+> 💡 In particular, it will follow at each code modification if the coverage improved (or not ...)
+
+Finally, some badges can now be added at the top of the [`README.md` file](../README.md) :
+
+```md
+[![Repo status](https://www.repostatus.org/badges/latest/active.svg)](https://github.com/CompMath-TUHH/MaRGE_3D_solver)
+[![CI pipeline](https://github.com/CompMath-TUHH/MaRGE_3D_solver/actions/workflows/ci_pipeline.yml/badge.svg)](https://github.com/CompMath-TUHH/MaRGE_3D_solver/actions/workflows/ci_pipeline.yml)
+[![Coverage](https://codecov.io/github/CompMath-TUHH/MaRGE_3D_solver/graph/badge.svg?token=5Q6GS039XF)](https://codecov.io/github/CompMath-TUHH/MaRGE_3D_solver)
+```
+
+> 💡 The `Coverage` badge must be retrieved directly from the [codecov](https://app.codecov.io/github/CompMath-TUHH) interface
