@@ -41,6 +41,8 @@ tests = [
     "flake8",
     "pytest",
     "pytest-cov",
+    "pytest-timeout",
+    "coverage[toml]",
 ]
 
 [tool.coverage.run]
