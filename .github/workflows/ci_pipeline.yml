@@ -34,7 +34,7 @@ jobs:
         flake8 ./marge3d ./tests --count --select=E9,F63,F7,F82 --show-source --statistics
     - name: Run pytest
       run: |
-        pytest --cov --cov-branch --cov-report=xml -v --durations=0 ./tests
+        pytest --cov=marge3d --cov-branch --cov-report=xml -v --durations=0 ./tests
     - name: Upload coverage reports to Codecov
       uses: codecov/codecov-action@v5
       if: github.repository_owner == 'CompMath-TUHH' && matrix.python == '3.13'
