@@ -40,7 +40,7 @@ Tracker = "https://github.com/CompMath-TUHH/MaRGE_3D_solver/issues"
 tests = [
     "flake8",
     "pytest",
-    "pytest-cov==6.2.1",
+    "pytest-cov",
 ]
 
 [tool.coverage.run]
