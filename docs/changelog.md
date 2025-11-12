@@ -219,3 +219,16 @@ Finally, some badges can now be added at the top of the [`README.md` file](../RE
 ```
 
 > 💡 The `Coverage` badge must be retrieved directly from the [codecov](https://app.codecov.io/github/CompMath-TUHH) interface
+
+
+### Dedicated scripts folder
+
+All remaining scripts are moved in a [`scripts`](../scripts) folder, and name are changed to be more explicit :
+
+- `Analy_obj_3D.py` -> `run_analytical_solution.py`
+- `Dtche_obj_3D` -> `run_Daitche_solution.py`
+- `Conv_3D` -> `run_convergence.py`
+
+### Adding documentation
+
+... incoming ...
