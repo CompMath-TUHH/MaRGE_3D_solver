@@ -282,3 +282,5 @@ In particular, one can keep now track of the latest DOI using this Badge :
 ```md
 [![DOI](https://zenodo.org/badge/1090126264.svg)](https://doi.org/10.5281/zenodo.17601798)
 ```
+
+In addition, the [`CITATION.cff`](../CITATION.cff) file is added at the root of the repository.
