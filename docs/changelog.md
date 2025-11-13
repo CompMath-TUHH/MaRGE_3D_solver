@@ -231,6 +231,7 @@ All remaining scripts are moved in a [`scripts`](../scripts) folder, and name ar
 - `Dtche_obj_3D` -> `run_Daitche_solution.py`
 - `Conv_3D` -> `run_convergence.py`
 
+
 ### Adding documentation
 
 In the [`docs`](../docs) folder, template for documentation is added inspired from [qmat](https://github.com/Parallel-in-Time/qmat/tree/main/docs). In particular, it added :
@@ -242,3 +243,7 @@ In the [`docs`](../docs) folder, template for documentation is added inspired fr
 ```bash
 make html
 ```
+
+### Setting up online documentation
+
+Use of [ReadTheDocs](https://app.readthedocs.org), which requires the [.readthedocs.yaml](./.readthedocs.yaml) file, and some configuration on GitHub and ReadTheDocs dashboard.
