@@ -5,7 +5,7 @@ build-backend = "hatchling.build"
 [project]
 name = "marge3d"
 version = "0.0.1"
-description = "Solver for Maxey-Riley-Gatignol (MaRGE) in 3D"
+description = "Solver for the Maxey-Riley-Gatignol Equations (MaRGE) in 3D"
 dependencies = [
     "numpy",
     "scipy",

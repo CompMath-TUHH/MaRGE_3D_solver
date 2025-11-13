@@ -8,10 +8,8 @@
 
 ## Installation
 
-Download the repository, then run the following command inside :
-
 ```bash
-pip install .
+pip install marge3d
 ```
 
 ## Documentation

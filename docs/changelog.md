@@ -244,6 +244,15 @@ In the [`docs`](../docs) folder, template for documentation is added inspired fr
 make html
 ```
 
-### Setting up online documentation
+### Setup online documentation
 
 Use of [ReadTheDocs](https://app.readthedocs.org), which requires the [.readthedocs.yaml](./.readthedocs.yaml) file, and some configuration on GitHub and ReadTheDocs dashboard.
+
+
+### Setup PyPI package
+
+This requires the [publish.yml](../.github/workflows/publish.yml) file and the addition of new publisher on [PyPI](https://pypi.org).
+Once the latter is set, the `Publish to PyPI 📦` workflow has to be triggered manually on the
+[GitHub action panel](https://github.com/CompMath-TUHH/MaRGE_3D_solver/actions)
+to publish the first package version `0.0.1`.
+In addition, a first release is done with the tag `v0.0.1` on the [GitHub releases page](https://github.com/CompMath-TUHH/MaRGE_3D_solver/releases)
