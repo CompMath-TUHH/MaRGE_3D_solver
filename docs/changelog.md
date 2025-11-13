@@ -271,3 +271,14 @@ Also, some new badges can be added to the documentation and main `README.md` fil
 [![PyPI - Package](https://img.shields.io/pypi/v/marge3d?logo=python)](https://pypi.org/project/marge3d)
 [![PyPI - Downloads](https://img.shields.io/pypi/dm/marge3d?logo=pypi)](https://pypistats.org/packages/marge3d)
 ```
+
+### Setup the Zenodo release
+
+Once Zenodo is connected to the [CompMath-TUHH GitHub organization](https://github.com/CompMath-TUHH),
+then it will follow all releases published on GitHub and create a unique DOI for it.
+
+In particular, one can keep now track of the latest DOI using this Badge :
+
+```md
+[![DOI](https://zenodo.org/badge/1090126264.svg)](https://doi.org/10.5281/zenodo.17601798)
+```

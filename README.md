@@ -9,6 +9,8 @@
 
 📜 _Solver for Maxey-Riley-Gatignol Equations (MaRGE) in 3D flow based on the method by [Daitche (2013)](https://doi.org/10.1016/j.jcp.2013.07.024). Analytical solution in simple vortex is provided to validate the method._
 
+[![DOI](https://zenodo.org/badge/1090126264.svg)](https://doi.org/10.5281/zenodo.17601798)
+
 ## Installation
 
 ```bash
