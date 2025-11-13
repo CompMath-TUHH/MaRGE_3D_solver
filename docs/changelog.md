@@ -247,6 +247,11 @@ make html
 ### Setup online documentation
 
 Use of [ReadTheDocs](https://app.readthedocs.org), which requires the [.readthedocs.yaml](./.readthedocs.yaml) file, and some configuration on GitHub and ReadTheDocs dashboard.
+Once it's done, a new badge can be added on the top of the main `README.md` file :
+
+```md
+[![Read the Docs](https://img.shields.io/readthedocs/marge-3d-solver?logo=readthedocs)](https://marge-3d-solver.readthedocs.io/)
+```
 
 
 ### Setup PyPI package
@@ -256,3 +261,10 @@ Once the latter is set, the `Publish to PyPI 📦` workflow has to be triggered 
 [GitHub action panel](https://github.com/CompMath-TUHH/MaRGE_3D_solver/actions)
 to publish the first package version `0.0.1`.
 In addition, a first release is done with the tag `v0.0.1` on the [GitHub releases page](https://github.com/CompMath-TUHH/MaRGE_3D_solver/releases)
+
+Also, some new badges can be added to the documentation and main `README.md` file :
+
+```md
+[![PyPI - Package](https://img.shields.io/pypi/v/marge3d?logo=python)](https://pypi.org/project/marge3d)
+[![PyPI - Downloads](https://img.shields.io/pypi/dm/marge3d?logo=pypi)](https://pypistats.org/packages/marge3d)
+```
