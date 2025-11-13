@@ -6,7 +6,7 @@ from marge3d.fields import VelocityField3D
 from marge3d.analytic import AnalyticalSolver
 from marge3d.numeric import NumericalSolver
 from marge3d.params import TEST_PARAMETERS
-from marge3d.utils import numericalOrder
+from marge3d.utils import numerical_order
 
 N_STEPS_CONV = [100, 200, 500]
 
@@ -39,7 +39,7 @@ def test_order(t_end, order):
         err = np.max(np.linalg.norm(R_ana - R_num, axis=1))
         errors.append(err)
 
-    num_order, rmse = numericalOrder(N_STEPS_CONV, errors)
+    num_order, rmse = numerical_order(N_STEPS_CONV, errors)
     expected_order = order
     if order == 3:
         # TODO : this is weird ... implementation should be checked

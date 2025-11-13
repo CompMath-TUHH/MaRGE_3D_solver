@@ -11,7 +11,7 @@ Creation of the `marge3D` folder, containing a `__init__.py` file so it can be i
 - `Dtche_J_parameters_3D.py` -> [`marge3D/params.py`](../marge3d/params.py)
 - `Dtche_J_cls_3D.py` -> [`marge3D/numeric.py`](../marge3d/numeric.py)
 - `Analy_obj_3D.py` -> [`marge3D/analytic.py`](../marge3d/analytic.py)
-- `Vortex_Fld_3D.py` -> [`marge3D/fields.py](../marge3d/fields.py)
+- `Vortex_Fld_3D.py` -> [`marge3D/fields.py`](../marge3d/fields.py)
 
 > 💡 All import statements have been updated
 
@@ -233,4 +233,12 @@ All remaining scripts are moved in a [`scripts`](../scripts) folder, and name ar
 
 ### Adding documentation
 
-... incoming ...
+In the [`docs`](../docs) folder, template for documentation is added inspired from [qmat](https://github.com/Parallel-in-Time/qmat/tree/main/docs). In particular, it added :
+
+- the `docs` dependencies in `pyproject.toml`
+- a base [`index.rst`](./index.rst) and [`conf.py`](./conf.py) file for `sphinx` (documentation builder)
+- a [`logo.png`](./logo.png) quickly generated from a plot and some additional CSS and favicon files in [`_static`](./_static)
+- a [`Makefile`] to easily build the documentation in a `_build/html` folder using the command
+```bash
+make html
+```

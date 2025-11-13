@@ -1,12 +1,12 @@
 import numpy as np
 
-def numericalOrder(nSteps, err):
+def numerical_order(n_steps, err):
     """
     Compute numerical order from two vectors containing the error and the number of time-steps.
 
     Parameters
     ----------
-    nSteps : np.1darray or list
+    n_steps : np.1darray or list
         Different number of steps to compute the error.
     err : np.1darray
         Different error values associated to the number of steps.
@@ -18,8 +18,8 @@ def numericalOrder(nSteps, err):
     rmse : float
         The root mean square error of the linear regression.
     """
-    nSteps = np.asarray(nSteps)
-    x, y = np.log10(1/nSteps), np.log10(err)
+    n_steps = np.asarray(n_steps)
+    x, y = np.log10(1/n_steps), np.log10(err)
 
     # Compute regression coefficients and rmse
     xMean = x.mean()

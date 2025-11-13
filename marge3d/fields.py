@@ -17,6 +17,7 @@ class VelocityField3D:
     return u1, u2, u3
 
   def get_gradient(self, x, y, z, t):
+    # TODO : why is there no dependency on x, y, z and t ?
     u1x =  0.0
     u1y =  -1.0 * self.omega
     u1z =  0.0
@@ -29,6 +30,7 @@ class VelocityField3D:
     return u1x, u1y, u1z, u2x, u2y, u2z, u3x, u3y, u3z
 
   def get_dudt(self, x, y, z, t):
+    # TODO : why is there no dependency on x, y, z and t ?
     u1t = 0.0
     u2t = 0.0
     u3t = 0.0
@@ -52,6 +54,7 @@ class velocity_field_3d_nondim():
     return u1/self.char_vel, u2/self.char_vel, u3/self.char_vel
 
   def get_gradient(self, x, y, z, t):
+    # TODO : why is there no dependency on x, y, z and t ?
     u1x =  0.0
     u1y =  -1.0 * self.omega
     u1z =  0.0
@@ -64,6 +67,7 @@ class velocity_field_3d_nondim():
     return u1x*self.char_time, u1y*self.char_time, u1z*self.char_time, u2x*self.char_time, u2y*self.char_time, u2z*self.char_time, u3x*self.char_time, u3y*self.char_time, u3z*self.char_time
 
   def get_dudt(self, x, y, z, t):
+    # TODO : why is there no dependency on x, y, z and t ?
     u1t = 0.0
     u2t = 0.0
     u3t = 0.0

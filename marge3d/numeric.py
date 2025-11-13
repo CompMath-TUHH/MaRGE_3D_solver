@@ -119,6 +119,7 @@ class NumericalSolver:
 
         for nn in range(0, len(t_v)-1):
 
+            # TODO : why make it a csr matrix if you transform it back to a dense array ?
             Sum_w1        = np.dot(self.alpha_mat.toarray()[nn, :nn+1], w1_v)
             Sum_w2        = np.dot(self.alpha_mat.toarray()[nn, :nn+1], w2_v)
             Sum_w3        = np.dot(self.alpha_mat.toarray()[nn, :nn+1], w3_v)
@@ -162,7 +163,6 @@ class NumericalSolver:
         pos_vec_y      = y_v
         pos_vec_z      = z_v
         w_vec          = np.transpose(np.array([np.flip(w1_v), np.flip(w2_v), np.flip(w3_v)]))
-
 
         if flag == True:
             self.pos_vec_x = np.copy(pos_vec_x)
