@@ -284,3 +284,16 @@ In particular, one can keep now track of the latest DOI using this Badge :
 ```
 
 In addition, the [`CITATION.cff`](../CITATION.cff) file is added at the root of the repository.
+
+
+## Improving the package
+
+📜 _On the list of things to do ..._
+
+- [ ] first notebook tutorial
+- [ ] docs on testing and publishing pipeline
+- [ ] complete docstrings for modules, classes and function
+- [ ] code improvement
+  - [ ] code structure
+  - [ ] test coverage
+  - [ ] performance
