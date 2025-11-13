@@ -17,6 +17,7 @@ maintainers = [
     {name = "Finn Sommer", email = "finn.sommer@tuhh.de"},
 ]
 readme = "README.md"
+license = {file = "LICENSE"}
 classifiers = [
     "Development Status :: 3 - Alpha",
 

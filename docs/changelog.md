@@ -52,6 +52,7 @@ maintainers = [
     {name = "Finn Sommer", email = "finn.sommer@tuhh.de"},
 ]
 readme = "README.md"
+license = {file = "LICENSE"}
 classifiers = [
     "Development Status :: 3 - Alpha",
 
@@ -80,6 +81,8 @@ pip install -e .
 
 > 💡 The `-e` option installs in editable mode, creating link to the `marge3d` package in the Python environment rather than copying the package into it.
 > That way, any local modification on the package is automatically taken into account.
+
+In addition, a base [`LICENSE`](../LICENSE) file is added in the root folder.
 
 
 ### Continuous testing
