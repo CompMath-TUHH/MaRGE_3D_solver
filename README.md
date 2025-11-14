@@ -27,5 +27,5 @@ pip install marge3d
 
 ## Developers
 
-- [Vamika Rathi](https://github.com/tlunet)
+- [Vamika Rathi](https://github.com/Vamika-Rathi)
 - [Finn Sommer](https://github.com)
