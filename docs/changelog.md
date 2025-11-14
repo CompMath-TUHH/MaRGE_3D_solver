@@ -13,19 +13,21 @@ Creation of the `marge3D` folder, containing a `__init__.py` file so it can be i
 - `Analy_obj_3D.py` -> [`marge3D/analytic.py`](../marge3d/analytic.py)
 - `Vortex_Fld_3D.py` -> [`marge3D/fields.py`](../marge3d/fields.py)
 
-> 💡 All import statements have been updated
+Consider using short names, to avoid km-long import statements ...
+
+> 💡 `VSCode` can be quite useful when moving and renaming files, as it can automatically update all related imports.
 
 
 ### Class naming
 
-Most class in `marge3D` have been renamed to follow the [standard Python conventions (PEP8)](https://peps.python.org/pep-0008), that is :
+Most classes in `marge3D` have been renamed to follow the [standard Python conventions (PEP8)](https://peps.python.org/pep-0008), that is :
 
 - `mr_parameter` -> `DaitcheParameters`
 - `maxey_riley_analytic_3d` -> `AnalyticalSolver`
 - `maxey_riley_Daitche_3d` -> `NumericalSolver`
 - `velocity_field_3d` -> `VelocityField3D`
 
-> 💡 All import statements have been updated, and unnecessary inheritances to the base `object` class have been removed
+> 💡 The `F2` renaming option in `VSCode` is quite useful to update all dependencies when renaming functions, variables or classes.
 
 
 ### Package setup
@@ -228,7 +230,7 @@ Finally, some badges can now be added at the top of the [`README.md` file](../RE
 
 ### Dedicated scripts folder
 
-All remaining scripts are moved in a [`scripts`](../scripts) folder, and name are changed to be more explicit :
+All remaining scripts are moved in a [`scripts`](../scripts) folder, and names are changed to be more explicit :
 
 - `Analy_obj_3D.py` -> `run_analytical_solution.py`
 - `Dtche_obj_3D` -> `run_Daitche_solution.py`
@@ -237,33 +239,37 @@ All remaining scripts are moved in a [`scripts`](../scripts) folder, and name ar
 
 ### Adding documentation
 
-In the [`docs`](../docs) folder, template for documentation is added inspired from [qmat](https://github.com/Parallel-in-Time/qmat/tree/main/docs). In particular, it added :
+In the [`docs`](../docs) folder is added a **documentation template** inspired from [qmat](https://github.com/Parallel-in-Time/qmat/tree/main/docs). In particular, it contains :
 
 - the `docs` dependencies in `pyproject.toml`
 - a base [`index.rst`](./index.rst) and [`conf.py`](./conf.py) file for `sphinx` (documentation builder)
 - a [`logo.png`](./logo.png) quickly generated from a plot and some additional CSS and favicon files in [`_static`](./_static)
-- a [`Makefile`] to easily build the documentation in a `_build/html` folder using the command
+- a [`Makefile`](./Makefile) to easily build the documentation in a `_build/html` folder using
 ```bash
 make html
 ```
 
 ### Setup online documentation
 
-Use of [ReadTheDocs](https://app.readthedocs.org), which requires the [.readthedocs.yaml](./.readthedocs.yaml) file, and some configuration on GitHub and ReadTheDocs dashboard.
+Use [ReadTheDocs](https://app.readthedocs.org) to **host documentation online**,
+which requires the [.readthedocs.yaml](./.readthedocs.yaml) file,
+and some configuration on GitHub and ReadTheDocs dashboard.
 Once it's done, a new badge can be added on the top of the main `README.md` file :
 
 ```md
 [![Read the Docs](https://img.shields.io/readthedocs/marge-3d-solver?logo=readthedocs)](https://marge-3d-solver.readthedocs.io/)
 ```
 
+> 💡 Online documentation will be automatically regenerated and updated at each commit on the `main` branch.
+
 
 ### Setup PyPI package
 
-This requires the [publish.yml](../.github/workflows/publish.yml) file and the addition of new publisher on [PyPI](https://pypi.org).
+This requires the [publish.yml](../.github/workflows/publish.yml) file and setting up of **new publisher** on [PyPI](https://pypi.org).
 Once the latter is set, the `Publish to PyPI 📦` workflow has to be triggered manually on the
 [GitHub action panel](https://github.com/CompMath-TUHH/MaRGE_3D_solver/actions)
 to publish the first package version `0.0.1`.
-In addition, a first release is done with the tag `v0.0.1` on the [GitHub releases page](https://github.com/CompMath-TUHH/MaRGE_3D_solver/releases)
+In addition, a first release is done with the tag `v0.0.1` on the [GitHub releases page](https://github.com/CompMath-TUHH/MaRGE_3D_solver/releases).
 
 Also, some new badges can be added to the documentation and main `README.md` file :
 
@@ -275,7 +281,7 @@ Also, some new badges can be added to the documentation and main `README.md` fil
 ### Setup the Zenodo release
 
 Once Zenodo is connected to the [CompMath-TUHH GitHub organization](https://github.com/CompMath-TUHH),
-then it will follow all releases published on GitHub and create a unique DOI for it.
+then it will **follow all releases published on GitHub** and create a unique DOI for it.
 
 In particular, one can keep now track of the latest DOI using this Badge :
 
@@ -288,12 +294,11 @@ In addition, the [`CITATION.cff`](../CITATION.cff) file is added at the root of 
 
 ## Improving the package
 
-📜 _On the list of things to do ..._
+📜 _List of additional steps that help improving the quality of the package and it's further developments._
 
-- [ ] first notebook tutorial
-- [ ] docs on testing and publishing pipeline
-- [ ] complete docstrings for modules, classes and function
-- [ ] code improvement
-  - [ ] code structure
-  - [ ] test coverage
-  - [ ] performance
+- ✅ first notebook tutorial
+- ✅ docs on testing and publishing pipeline
+- complete docstrings for modules, classes and function
+- test coverage at 100%
+
+Also, don't hesitate to check the [GitHub issues](https://github.com/CompMath-TUHH/MaRGE_3D_solver/issues) for targeted potential improvements ...

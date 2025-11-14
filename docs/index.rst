@@ -3,6 +3,12 @@ MaRGE3D Package
 
 .. raw:: html
 
+    <a href="https://pypi.org/project/marge3d">
+        <img alt="PyPI - Package" src="https://img.shields.io/pypi/v/marge3d?logo=python">
+    </a>
+    <a href="https://pypistats.org/packages/marge3d">
+        <img alt="PyPI - Download" src="https://img.shields.io/pypi/dm/marge3d?logo=pypi">
+    </a>
     <a href="https://github.com/CompMath-TUHH/MaRGE_3D_solver">
         <img alt="Last Commit" src="https://img.shields.io/github/last-commit/CompMath-TUHH/MaRGE_3D_solver/main?logo=github" />
     </a>
@@ -17,6 +23,21 @@ MaRGE3D Package
 using the method by `Daitche (2013) <https://doi.org/10.1016/j.jcp.2013.07.024>`_.
 Analytical solution in simple vortex is provided to validate the method.
 
+.. raw:: html
+
+    <a href="https://zenodo.org/doi/10.5281/zenodo.17601798">
+        <img alt="DOI" src="https://zenodo.org/badge/1090126264.svg">
+    </a>
+
+This package can be installed using `pip` :
+
+.. code-block:: bash
+
+    pip install marge3d
+
+... but you can also use `conda` or installation from sources, see the :doc:`Installation Instructions 💾<installation>`
+
+
 Doc Contents
 ============
 
@@ -24,7 +45,9 @@ Doc Contents
     :maxdepth: 1
 
     installation
+    notebooks
     changelog
+    contributing
     API reference <api/marge3d/index>
 
 Links
@@ -37,4 +60,4 @@ Developers
 ==========
 
 * `Vamika Rathi <https://github.com/Vamika-Rathi>`_
-* `Finn Sommer <https://github.com/brownbaerchen>`_
+* `Finn Sommer <https://github.com>`_

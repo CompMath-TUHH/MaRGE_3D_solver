@@ -42,8 +42,13 @@ tests = [
     "flake8",
     "pytest",
     "pytest-cov",
+    "pytest-notebook",
     "pytest-timeout",
     "coverage[toml]",
+    "notebook",
+    "matplotlib",
+    "jupyter",
+    "nbconvert",
 ]
 docs = [
     "setuptools >= 18.0",
@@ -56,6 +61,14 @@ docs = [
     "sphinxcontrib-video",
     "myst-parser",
     "sphinx-favicon"
+]
+
+[tool.pytest.ini_options]
+nb_diff_ignore = [
+    "/metadata/",
+    "/cells/*/outputs/*/data/image/png"]
+pythonpath = [
+    "."
 ]
 
 [tool.coverage.run]

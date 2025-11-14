@@ -17,7 +17,15 @@
 pip install marge3d
 ```
 
-## Documentation
+> 🔔 _Checkout the [latest documentation build](https://marge-3d-solver.readthedocs.io/en/latest/) and_
+> _in particular the [**notebook tutorials**](https://marge-3d-solver.readthedocs.io/en/latest/notebooks.html)_
 
-The code is currently transformed into a proper Python package that can be referred in a publication.
-Details on the full transformation are given [here ...](./docs/changelog.md)
+## Links
+
+- Documentation : https://marge-3d-solver.readthedocs.io
+- Issues Tracker : https://github.com/CompMath-TUHH/MaRGE_3D_solver/issues
+
+## Developers
+
+- [Vamika Rathi](https://github.com/tlunet)
+- [Finn Sommer](https://github.com)
