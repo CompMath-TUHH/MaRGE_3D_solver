@@ -40,7 +40,7 @@ Tracker = "https://github.com/CompMath-TUHH/MaRGE_3D_solver/issues"
 [project.optional-dependencies]
 tests = [
     "flake8",
-    "pytest",
+    "pytest<9",
     "pytest-cov",
     "pytest-notebook",
     "pytest-timeout",
