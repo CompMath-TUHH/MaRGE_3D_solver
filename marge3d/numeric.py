@@ -15,8 +15,7 @@ class NumericalSolver:
         self.x       = np.copy(x)       # particle position
         self.p       = DaitcheParameters(particle_density, fluid_density,
                             particle_radius, kinematic_viscosity, time_scale, char_vel)
-
-
+                           
         self.vel     = velocity_field
 
         '''
@@ -39,6 +38,19 @@ class NumericalSolver:
         else:
             raise("Requested order for Daitche's method not available.")
 
+        if order == 1:
+            self.solve = self.Euler
+        elif order == 2:
+            self.solve = self.AdamBashf2
+        elif order == 3:
+            self.solve = self.AdamBashf3
+        else:
+            raise NotImplementedError(f"{order}")
+        self.order = order  # store as attribute so order is remembered
+
+    def solve(self, t_v, flag=False):
+        raise NotImplementedError("should never be called !")
+        
 
     def calculate_G(self, w1, w2, w3, x, y, z, t):
 
