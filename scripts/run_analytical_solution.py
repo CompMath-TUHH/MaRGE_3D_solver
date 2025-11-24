@@ -41,14 +41,7 @@ MRE_analytic = AnalyticalSolver(R0, U0, particle_density, fluid_density, particl
 Order_n = NumericalSolver(R0, W0, Vortex, len(t_v), order, particle_density, fluid_density, particle_radius,
                    kinematic_viscosity, time_scale, char_vel)
 
-if order == 1:
-    R_x, R_y, R_z, W = Order_n.Euler(t_v, flag=True)
-elif order == 2:
-    R_x, R_y, R_z, W = Order_n.AdamBashf2(t_v, flag=True)
-elif order == 3:
-    R_x, R_y, R_z, W = Order_n.AdamBashf3(t_v, flag=True)
-else:
-    raise ValueError("Order must be 1, 2, or 3.")
+R_x, R_y, R_z, W = Order_n.solve(t_v, flag=True)
 
 X      = np.zeros(len(t_v))
 Y      = np.zeros(len(t_v))
