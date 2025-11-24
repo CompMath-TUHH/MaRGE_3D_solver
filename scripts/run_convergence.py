@@ -51,14 +51,8 @@ def Err_n(t, N, order):
     t_v = np.linspace(0, t, N)
     mre = NumericalSolver(R0, W0, Vortex, N+1, order, particle_density, fluid_density, particle_radius,
                        kinematic_viscosity, time_scale, char_vel)
-    if order == 1:
-        R_x, R_y, R_z, W = mre.Euler(t_v, flag=True)
-    elif order == 2:
-        R_x, R_y, R_z, W = mre.AdamBashf2(t_v, flag=True)
-    elif order == 3:
-        R_x, R_y, R_z, W = mre.AdamBashf3(t_v, flag=True)
-    else:
-        raise ValueError("Order must be 1, 2, or 3")
+    
+    R_x, R_y, R_z, W = mre.solve(t_v, flag=True)
 
     R_num = np.column_stack((R_x, R_y, R_z))
     R_ana = np.array([analytic_traj(ti) for ti in t_v])
