@@ -36,14 +36,7 @@ Order_n = NumericalSolver(R0, W0, Vortex, N, order, particle_density, fluid_dens
                    kinematic_viscosity, time_scale, char_vel)
 
 t_v = np.linspace(T_ini, T_fin, N)
-if order == 1:
-    R_x, R_y, R_z, W = Order_n.Euler(t_v, flag=True)
-elif order == 2:
-    R_x, R_y, R_z, W = Order_n.AdamBashf2(t_v, flag=True)
-elif order == 3:
-    R_x, R_y, R_z, W = Order_n.AdamBashf3(t_v, flag=True)
-else:
-    raise ValueError("Order must be 1, 2, or 3.")
+R_x, R_y, R_z, W = Order_n.solve(t_v, flag=True)
 
 #"""
 # For quiver plot of the fluid field
