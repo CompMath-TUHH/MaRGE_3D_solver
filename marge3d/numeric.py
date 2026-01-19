@@ -7,51 +7,56 @@ import scipy.sparse as sp
 from marge3d.params import DaitcheParameters
 
 class NumericalSolver:
+    """
+    3D solver for the Maxey–Riley-Gatignol equation (MaRGE)
+    using Daitche's Adams–Bashforth methods.
 
-    def __init__(self, x, w, velocity_field, Nt, order, particle_density, fluid_density, particle_radius,
-                       kinematic_viscosity, time_scale, char_vel):
+    Parameters
+    ----------
+    x : array_like
+        Initial particle position (3,)
+    w : array_like
+        Initial relative velocity (3,)
+    velocity_field : object
+        Must implement get_velocity, get_gradient, get_dudt
+    Nt : int
+        Number of time steps
+    order : int
+        Order of Daitche method (1, 2, or 3)
+    params : DaitcheParameters
+        Physical parameters of the particle–fluid system
+    """
 
-        self.w       = np.copy(w)       # velocity difference
-        self.x       = np.copy(x)       # particle position
-        self.p       = DaitcheParameters(particle_density, fluid_density,
-                            particle_radius, kinematic_viscosity, time_scale, char_vel)
-                           
-        self.vel     = velocity_field
+    def __init__(self, x, w, velocity_field, Nt, order,
+                  params: DaitcheParameters):
 
-        '''
-        if self.vel.limits == True:
-            if (x[0] > self.vel.x_right or x[0] < self.vel.x_left or x[1] > self.vel.y_up or x[1] < self.vel.y_down):
-                  raise Exception("Particle's initial position is outside the spatial domain")
-        '''
+        self.x   = np.copy(x)
+        self.w   = np.copy(w)
+        self.vel = velocity_field
+        self.p   = params
 
         if order == 1:
             self.calc_alpha_mat(Nt)
+            self.solve = self.Euler
         elif order == 2:
-            self.euler_nodes  = 151 # This number could be increased to increase accuracy
+            self.euler_nodes = 151
             self.calc_alpha_mat(self.euler_nodes)
             self.calc_beta_mat(Nt)
+            self.solve = self.AdamBashf2
         elif order == 3:
-            self.euler_nodes  = 151 # This number could be increased to increase accuracy
+            self.euler_nodes = 151
             self.calc_alpha_mat(self.euler_nodes)
             self.calc_beta_mat(self.euler_nodes)
             self.calc_gamma_mat(Nt)
-        else:
-            raise("Requested order for Daitche's method not available.")
-
-        if order == 1:
-            self.solve = self.Euler
-        elif order == 2:
-            self.solve = self.AdamBashf2
-        elif order == 3:
             self.solve = self.AdamBashf3
         else:
-            raise NotImplementedError(f"{order}")
+            raise ValueError("Requested order for Daitche's method not available.")
+            
         self.order = order  # store as attribute so order is remembered
 
     def solve(self, t_v, flag=False):
         raise NotImplementedError("should never be called !")
         
-
     def calculate_G(self, w1, w2, w3, x, y, z, t):
 
         coeff              = self.p.R - 1.0
