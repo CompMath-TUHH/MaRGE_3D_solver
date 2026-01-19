@@ -12,6 +12,7 @@ from concurrent.futures import ProcessPoolExecutor
 from marge3d.fields import VelocityField3D
 from marge3d.numeric import NumericalSolver
 from marge3d.analytic import AnalyticalSolver
+from marge3d.params import DaitcheParameters
 
 # -----------------------------------------------------------------------------
 # Parameters
@@ -22,6 +23,9 @@ particle_radius     = 0.00018**0.5  # 0.0135
 kinematic_viscosity = 2 * 1e-4
 time_scale          = 0.1
 char_vel            = 0.4
+
+par = DaitcheParameters(particle_density, fluid_density, particle_radius,
+                    kinematic_viscosity, time_scale, char_vel)
 
 St = (particle_radius**2.0) * 1 / (3 * kinematic_viscosity*time_scale)
 print("Stokes number (S) = ", St)
@@ -49,8 +53,7 @@ def analytic_traj(t):
 def Err_n(t, N, order):
     """Compute L_inf error for given N and order."""
     t_v = np.linspace(0, t, N)
-    mre = NumericalSolver(R0, W0, Vortex, N+1, order, particle_density, fluid_density, particle_radius,
-                       kinematic_viscosity, time_scale, char_vel)
+    mre = NumericalSolver(R0, W0, Vortex, N+1, order, par)
     
     R_x, R_y, R_z, W = mre.solve(t_v, flag=True)
 
