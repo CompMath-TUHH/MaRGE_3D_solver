@@ -24,7 +24,7 @@ def test_order(t_end, order):
     errors = []
     for n in N_STEPS_CONV:
         times = np.linspace(0, t_end, n)
-        solver = NumericalSolver(R0, W0, vortex, n+1, order, TEST_PARAMETERS)
+        solver = NumericalSolver(R0, W0, vortex, n+1, order, *TEST_PARAMETERS)
 
         stepper = {
             1: solver.Euler,
