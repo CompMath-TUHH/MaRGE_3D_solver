@@ -32,8 +32,7 @@ Vortex = VelocityField3D(1)
 V0    = Vortex.get_velocity(R0[0], R0[1], R0[2], T_ini)
 N     = 100
 
-Order_n = NumericalSolver(R0, W0, Vortex, N, order, particle_density, fluid_density, particle_radius,
-                   kinematic_viscosity, time_scale, char_vel)
+Order_n = NumericalSolver(R0, W0, Vortex, N, order, par)
 
 t_v = np.linspace(T_ini, T_fin, N)
 R_x, R_y, R_z, W = Order_n.solve(t_v, flag=True)
