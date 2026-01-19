@@ -12,6 +12,7 @@ import matplotlib.pyplot as plt
 from marge3d.fields import VelocityField3D
 from marge3d.numeric import NumericalSolver
 from marge3d.analytic import AnalyticalSolver
+from marge3d.params import DaitcheParameters
 
 
 particle_density    = 500
@@ -20,6 +21,9 @@ particle_radius     = 0.0015 # S=0.3 for this and the 3rd order method does not 
 kinematic_viscosity = 2 * 1e-4
 time_scale          = 0.1
 char_vel            = 0.4
+
+par = DaitcheParameters(particle_density, fluid_density, particle_radius,
+                    kinematic_viscosity, time_scale, char_vel)
 
 order  = 2
 T      = 10
@@ -38,8 +42,7 @@ U0    = Vortex.get_velocity(R0[0], R0[1], R0[2], 0) # Initial fluid velocity
 
 MRE_analytic = AnalyticalSolver(R0, U0, particle_density, fluid_density, particle_radius, kinematic_viscosity, time_scale, char_vel)
 
-Order_n = NumericalSolver(R0, W0, Vortex, len(t_v), order, particle_density, fluid_density, particle_radius,
-                   kinematic_viscosity, time_scale, char_vel)
+Order_n = NumericalSolver(R0, W0, Vortex, len(t_v), order, par)
 
 R_x, R_y, R_z, W = Order_n.solve(t_v, flag=True)
 
