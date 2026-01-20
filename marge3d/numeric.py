@@ -28,12 +28,16 @@ class NumericalSolver:
     """
 
     def __init__(self, x, w, velocity_field, Nt, order,
-                  params: DaitcheParameters):
+                  params=None, **kwargs):
 
         self.x   = np.copy(x)
         self.w   = np.copy(w)
         self.vel = velocity_field
-        self.p   = params
+        
+        if isinstance(params, DaitcheParameters):
+            self.p = params
+        else:
+            self.p = DaitcheParameters(**kwargs)
 
         if order == 1:
             self.calc_alpha_mat(Nt)
