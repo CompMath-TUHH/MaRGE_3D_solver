@@ -56,7 +56,7 @@ class NumericalSolver:
         else:
             raise ValueError("Requested order for Daitche's method not available.")
             
-        self.order = order  # store as attribute so order is remembered
+        self.order = order
 
     def solve(self, t_v, flag=False):
         raise NotImplementedError("should never be called !")
