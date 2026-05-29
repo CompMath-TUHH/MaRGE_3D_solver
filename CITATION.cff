@@ -1,6 +1,18 @@
 cff-version: 1.2.0
 message: "If you use this software, please cite it as below."
 
+@article{Rathi2026,
+  author  = {Rathi, Vamika and Ruprecht, Daniel},
+  title   = {Numerical Modeling of Inertial Particles in Three-Dimensional Fluid Flow},
+  journal = {Proceedings in Applied Mathematics and Mechanics},
+  volume  = {26},
+  number  = {2},
+  pages   = {e70158},
+  year    = {2026},
+  doi     = {10.1002/pamm.70158},
+  url     = {https://doi.org/10.1002/pamm.70158}
+}
+
 abstract: "Solver for the Maxey-Riley-Gatignol Equations (MaRGE) in 3D"
 authors:
   - family-names: Rathi
