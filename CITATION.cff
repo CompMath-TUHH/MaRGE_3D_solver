@@ -24,9 +24,9 @@ authors:
     orcid:
     affiliation: "Hamburg University of Technology, Institute of Mathematics, 21073 Hamburg, Germany"
 
-version: 0.0.3
+version: 0.0.4
 doi: 10.5281/zenodo.17601798
-date-released: 2025-11-14
+date-released: 2026-05-29
 keywords:
   - "time integration"
   - "particle simulation"
