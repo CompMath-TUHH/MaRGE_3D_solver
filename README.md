@@ -50,7 +50,7 @@ pip install marge3d
 The main functionality is found in the modules located in the
 `./marge3d`
 folder:
- 
+
 * `numeric.py` — `NumericalSolver` class implementing Daitche's first, second, and third order schemes for the full 3D MaRGE.
 * `analytic.py` — `AnalyticalSolver` class providing the analytical solution for a particle in a 3D vortex under gravity.
 * `fields.py` — `VelocityField3D` class defining the vortex velocity field.
@@ -61,17 +61,17 @@ Scripts to produce the figures from the paper can be found in the
 folder. Tests are located in
 `./tests`
 and can be run by typing
- 
+
 ```bash
 pytest ./tests/
 ```
- 
+
 while in the base folder of the code.
 
 ## How can I reproduce figures from the paper "Numerical Modeling of Inertial Particles in Three-Dimensional Fluid Flow"?
- 
+
 The scripts to reproduce the figures from this paper can be found [here](https://github.com/CompMath-TUHH/MaRGE_3D_solver/tree/main/scripts).
- 
+
 * Fig. 1 (left, positively buoyant particle trajectory) --> `scripts/run_analytical_solution.py` with `particle_density = 500`
 * Fig. 1 (right, negatively buoyant particle trajectory) --> `scripts/run_Daitche_solution.py` with `particle_density = 1410`
 * Fig. 2 (convergence, lighter particle, zero initial relative velocity) --> `scripts/run_convergence.py` with `particle_density = 500` and zero initial relative velocity `W0 = V0 - U0 = 0`; vary the Stokes number for `S = 3` (left) and `S = 0.3` (right)
@@ -79,13 +79,13 @@ The scripts to reproduce the figures from this paper can be found [here](https:/
 * Fig. 4 (convergence, heavier particle, zero initial relative velocity) --> `scripts/run_convergence.py` with `particle_density = 1410` and `W0 = 0`; `S = 3` (left) and `S = 0.3` (right)
 * Fig. 5 (convergence, heavier particle, non-zero initial relative velocity) --> `scripts/run_convergence.py` with `particle_density = 1410` and `W0 = (0, 0.1, 0)`; `S = 3` (left) and `S = 0.3` (right)
 > ℹ️ The Stokes number `S` is controlled through the particle radius, kinematic viscosity and characteristic time via `S = (1/3) a²/(ν T)`. The analytical solution is only valid for particles less dense than the fluid (`ρ_p/ρ_f < 5/8`) and assumes zero initial relative velocity; for the heavier particle and for non-zero initial relative velocity, the error is computed against a higher-resolution numerical reference solution instead of the analytical one. The analytical and numerical solutions agree only for the characteristic values `T = 0.1` and `U = 0.4` used in the paper.
- 
+
 ## Acknowledgements
- 
+
 This project is funded by the Deutsche Forschungsgemeinschaft (DFG, German Research Foundation) – SFB 1615 – 503850735. Open access funding enabled and organized by Projekt DEAL.
 
 
 ## Developers
 
 - [Vamika Rathi](https://github.com/Vamika-Rathi)
-- [Finn Sommer](https://github.com)
+- [Thibaut Lunet](https://github.com/tlunet)
